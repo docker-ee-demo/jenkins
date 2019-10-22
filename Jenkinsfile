@@ -1,4 +1,4 @@
-DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}-ee-alpine"
+DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}-ent-alpine"
 
 node {
     def docker_image
@@ -33,7 +33,7 @@ node {
     }
 
     stage('Build') {
-        docker_image = docker.build("${env.DOCKER_IMAGE_NAMESPACE_DEV}/${env.DOCKER_IMAGE_REPOSITORY}")
+        docker_image = docker.build("${env.DOCKER_IMAGE_NAMESPACE_DEV}/${env.DOCKER_IMAGE_REPOSITORY}", "--build-arg base_image=${BASE_IMAGE} --build-arg docker_version=${DOCKER_VERSION} --build-arg kubectl_version=${KUBECTL_VERSION} .")
     }
 
     stage('Test') {

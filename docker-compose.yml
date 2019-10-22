@@ -30,6 +30,7 @@ services:
       - jenkins-server.key
     volumes:
       - jenkins-home:/var/jenkins_home
+      - root-home:/root
       - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
@@ -56,4 +57,6 @@ secrets:
 
 volumes:
   jenkins-home:
+    driver: cloudstor
+  root-home:
     driver: cloudstor

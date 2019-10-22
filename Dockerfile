@@ -1,9 +1,12 @@
-ARG base_image=jenkins/jenkins:2.191-alpine
+ARG base_image=jenkins/jenkins:2.200-alpine
 
 FROM ${base_image}
 
-ENV DOCKER_PACKAGE_VERSION="19.03.1-r2"
-ENV KUBECTL_VERSION="1.14.3"
+ARG docker_version="19.03.3-r0"
+ARG kubectl_version="1.14.6"
+
+ENV DOCKER_PACKAGE_VERSION=${docker_version}
+ENV KUBECTL_VERSION=${kubectl_version}
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
